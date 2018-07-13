@@ -4,8 +4,8 @@ Created on Thu Jun 14 09:53:01 2018
 @author: Sadri Shehu ssheh
 """
 import pandas as pd
-import functools as funct
 import pprint 
+import functools as funct
 
 class naiveBayes():
     
@@ -119,6 +119,7 @@ class naiveBayes():
             self.propabilitetiAtributeve[i] = {}
             for j in hipoteza:
                 self.propabilitetiAtributeve[i].update({ hipoteza[j]:self.gjej_propabilitetin_Atributeve(j, hipoteza[j], i) })                
+        print("Propabilitetet e atributeve individuale (Likelyhood): ")
         pprint.pprint(self.propabilitetiAtributeve)
         
     def klasifiko(self):
@@ -129,9 +130,20 @@ class naiveBayes():
         """   
         print("\nRezultati: ")
         
+        Vlerat = []
+        Qelesat = []
         for i in self.propabilitetiAtributeve:
-            VektoriVlerave = list(self.propabilitetiAtributeve[i].values())
-            VleratIndividuale = 0
-            for j in VektoriVlerave:
-                VleratIndividuale = VleratIndividuale + (j * self.propabilitetiAtributitKlase[i])*100
-            print(i, "==>", round(VleratIndividuale, 4))
+            Vlerat.append(funct.reduce(lambda x, y: x*y, self.propabilitetiAtributeve[i].values())*self.propabilitetiAtributitKlase[i])
+            Qelesat.append(i)
+        
+        Shuma = 0
+        for i in Vlerat:
+            Shuma = Shuma + i
+        
+        Propabiliteti = []
+        for i in Vlerat:
+            Propabiliteti.append(round((i/Shuma)*100, 3))
+        
+        LisaPropabiliteteve = dict(zip(Qelesat, Propabiliteti))
+        #print(LisaPropabiliteteve)
+        pprint.pprint(LisaPropabiliteteve)
