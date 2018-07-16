@@ -10,9 +10,9 @@ import csv
 
 from naiveBayes import naiveBayes
 
-reader = csv.DictReader(open('DataFrameTest.csv'))
+reader = csv.DictReader(open('TestOrigins.csv'))
 
-k = naiveBayes(shteguDataBaze = "DataFrame.csv", AtributiKlase = "AQI Category" )
+k = naiveBayes(shteguDataBaze = "Origins.csv", AtributiKlase = "Buys_Computer" )
 
 k.kalkulo_propabilitetin_AtributitKlase()
 

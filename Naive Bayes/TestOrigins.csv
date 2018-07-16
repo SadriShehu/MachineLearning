@@ -1,0 +1,8 @@
+Age,Income,Student,Creadit_Rating
+<=30,high,no,fair
+>40,low,yes,excellent
+31-40,low,yes,excellent
+<=30,low,yes,fair
+>40,medium,yes,fair
+31-40,high,yes,fair
+>40,medium,no,excellent
